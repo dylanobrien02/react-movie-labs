@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { MoviesContext } from "../../contexts/moviesContext";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useForm, Controller } from "react-hook-form";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+import { useNavigate } from "react-router-dom";
 
 const ratings = [
   {
@@ -29,43 +33,19 @@ const ratings = [
   },
 ];
 
-const styles = {
-  root: {
-    marginTop: 2,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "left",
-  },
-  form: {
-    width: "100%",
-    "& > * ": {
-      marginTop: 2,
-    },
-  },
-  textField: {
-    width: "40ch",
-  },
-  submit: {
-    marginRight: 2,
-  },
-  snack: {
-    width: "50%",
-    "& > * ": {
-      width: "100%",
-    },
-  },
-};
-
 const ReviewForm = ({ movie }) => {
+  const context = useContext(MoviesContext);
   const [rating, setRating] = useState(3);
-  
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+
   const defaultValues = {
     author: "",
     review: "",
     agree: false,
     rating: "3",
   };
-  
+
   const {
     control,
     formState: { errors },
@@ -77,19 +57,25 @@ const ReviewForm = ({ movie }) => {
     setRating(event.target.value);
   };
 
+  const handleSnackClose = () => {
+    setOpen(false);
+    navigate("/movies/favorites");
+  };
+
   const onSubmit = (review) => {
     review.movieId = movie.id;
     review.rating = rating;
-    console.log(review);
+    context.addReview(movie, review);
+    setOpen(true);
   };
 
   return (
-    <Box component="div" sx={styles.root}>
+    <Box component="div">
       <Typography component="h2" variant="h3">
         Write a review
       </Typography>
 
-      <form sx={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <Controller
           name="author"
           control={control}
@@ -115,6 +101,7 @@ const ReviewForm = ({ movie }) => {
             {errors.author.message}
           </Typography>
         )}
+
         <Controller
           name="review"
           control={control}
@@ -167,12 +154,12 @@ const ReviewForm = ({ movie }) => {
           )}
         />
 
-        <Box sx={styles.buttons}>
+        <Box>
           <Button
             type="submit"
             variant="contained"
             color="primary"
-            sx={styles.submit}
+            sx={{ marginRight: 2 }}
           >
             Submit
           </Button>
@@ -180,7 +167,6 @@ const ReviewForm = ({ movie }) => {
             type="reset"
             variant="contained"
             color="secondary"
-            sx={styles.submit}
             onClick={() => {
               reset({
                 author: "",
@@ -192,6 +178,23 @@ const ReviewForm = ({ movie }) => {
           </Button>
         </Box>
       </form>
+
+      <Snackbar
+        sx={{ width: "50%" }}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        open={open}
+        onClose={handleSnackClose}
+      >
+        <MuiAlert
+          severity="success"
+          variant="filled"
+          onClose={handleSnackClose}
+        >
+          <Typography variant="h4">
+            Thank you for submitting a review
+          </Typography>
+        </MuiAlert>
+      </Snackbar>
     </Box>
   );
 };
