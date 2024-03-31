@@ -35,7 +35,7 @@ export default function MovieCard({ movie, action }) {
      <CardHeader
         avatar={
           movie.favorite ? (
-            <Avatar sx={{ backgroundColor: 'red' }}>
+            <Avatar sx={{ backgroundColor: 'purple' }}>
               <FavoriteIcon />
             </Avatar>
           ) : null

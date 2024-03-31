@@ -68,3 +68,54 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# Assignment 1 - ReactJS app.
+
+Name: [Dylan O'Brien (20094139)]
+
+## Overview.
+
+[The app allows users to discover, browse, and interact with a database of movies,
+Users can view details about each movie, including its title, release date, overview, and other information.
+Users can mark movies as their favorites. Users can write and submit reviews for movies. The app provides features for navigating between different sections such as favorite movies, upcoming movies, and individual movie details.]
+
+### Features.
+[ A bullet-point list of the __new features__ you added to the Movies Fan app (and any modifications to existing features) .]
+ 
++ The app is built using React.js, a popular JavaScript library for building user interfaces.
++ It utilizes various components such as HomePage, MoviePage, FavoriteMoviesPage, UpcomingMoviesPage, MovieReviewPage, ReviewForm, etc., to manage different aspects of the user interface and functionality.
++ Components are organized into pages, each responsible for rendering a specific section or view of the app.
++ etc
++ etc
+
+## Setup requirements.
+
+[ Outline any non-standard setup steps necessary to run your app locally after cloning the repo.]
+
+## API endpoints.
+
+ /movies: This endpoint retrieves a list of all available movies in the database.
+ /movies/favorites: Returns a list of movies marked as favorites by the user.
+ /movies/upcoming: Retrieves a list of upcoming movies scheduled for release.
+
+e.g.
++ Discover list of movies - discover/movie
++ Movie details - movie/:id
++ Movie genres = /genre/movie/list
+
+## Routing.
+
+[ List the __new routes__ supported by your app and state the associated page.]
+
++ The app uses React Router for client-side routing, allowing users to navigate between different pages/views of the app without full page reloads.
++ Routes are defined for each section of the app, such as favorite movies, upcoming movies, individual movie details, etc.
++ /blogs/:id/comments - detail view of a particular blog and its comments.
++ etc.
+
+[If relevant, state what aspects of your app are protected (i.e. require authentication) and what is public.]
+
+## Independent learning (If relevant).
+
+Itemize the technologies/techniques you researched independently and adopted in your project, 
+i.e. aspects not covered in the lectures/labs. Include the source code filenames that illustrate these 
+(we do not require code excerpts) and provide references to the online resources that helped you (articles/blogs).
