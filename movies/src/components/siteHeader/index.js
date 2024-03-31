@@ -14,6 +14,8 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
+<Offset/>
+
 const SiteHeader = ({ history }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -26,7 +28,7 @@ const SiteHeader = ({ history }) => {
   const menuOptions = [
     { label: "Home", path: "/" },
     { label: "Favorites", path: "/movies/favorites" },
-    { label: "Option 3", path: "/" },
+    { label: "Upcoming", path: "/movies/upcoming" },
     { label: "Option 4", path: "/" },
   ];
 
@@ -36,10 +38,6 @@ const SiteHeader = ({ history }) => {
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
   };
 
   return (
@@ -76,7 +74,7 @@ const SiteHeader = ({ history }) => {
                     horizontal: "right",
                   }}
                   open={open}
-                  onClose={handleClose}
+                  onClose={() => setAnchorEl(null)}
                 >
                   {menuOptions.map((opt) => (
                     <MenuItem
