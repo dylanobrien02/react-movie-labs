@@ -119,3 +119,7 @@ e.g.
 Itemize the technologies/techniques you researched independently and adopted in your project, 
 i.e. aspects not covered in the lectures/labs. Include the source code filenames that illustrate these 
 (we do not require code excerpts) and provide references to the online resources that helped you (articles/blogs).
+
+# Web App Dev 2: Web API Labs
+
+Practical labs for the WAD2 module
